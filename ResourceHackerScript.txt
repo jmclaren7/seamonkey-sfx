@@ -1,0 +1,7 @@
+[FILENAMES]
+Open=SeaMonkey-SFX.exe
+Save=SeaMonkey-SFX.exe
+Log=ResourceHacker.log
+[COMMANDS]
+-addoverwrite icon.ico, ICONGROUP,MAINICON,0
+-addoverwrite Manifest.txt, Manifest,1
