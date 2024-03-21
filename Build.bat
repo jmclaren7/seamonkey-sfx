@@ -1,19 +1,27 @@
 @echo off
 
+:: Required paths for this project
+set "inputfolder=SeaMonkey"
+set "executablepath=%inputfolder%\SeaMonkey.exe"
+SET "outputexe=%inputfolder%-SFX64.exe"
+
 :: Optional path to ResourceHacker.exe, this path will be checked first but standard paths will be checked if not found
 set "ResourceHackerPath=D:\example\Resource Hacker\ResourceHacker.exe"
 
+
+:main
+echo.
 echo.
 echo Steps:
-echo 1. Debloat Seamonkey and add profile folder
-echo 2. Pack SeaMonkey to SeaMoneky.7z
-echo 3. Create EXE file SeaMonkey.exe using SFX
-echo 4. Add Icon to SeaMonkey.exe and fix manifest (requires Resource Hacker)
+echo 1. Debloat %inputfolder%
+echo 2. Pack %inputfolder% to %inputfolder%.7z
+echo 3. Create %outputexe% using SFX
+echo 4. Add icon and fix manifest (requires Resource Hacker)
 echo.  
 
 
 :debloatchoice
-choice /C yna1234 /N /M "Debloat Seamonkey & add profile folder? (Y/N/A=All/#=Do Only That Step):"
+choice /C yna1234 /N /M "Debloat %inputfolder%? (Y/N/A=All/#=Do Only That Step):"
 goto debloatinput%errorlevel%
 :debloatinput1
 call :debloat
@@ -27,21 +35,25 @@ exit
 call :autoall
 goto done
 :debloatinput4
+cls
 call :debloat
-goto done
+goto main
 :debloatinput5
+cls
 call :pack
-goto done
+goto main
 :debloatinput6
+cls
 call :makesfx
-goto done
+goto main
 :debloatinput7
+cls
 call :resourcehack
-goto done
+goto main
 
 
 :packchoice
-choice /C ynt /N /M "Pack SeaMonkey to SeaMonkey.7z? (T=Fast Compression) (Y/N):"
+choice /C ynt /N /M "Pack %inputfolder% to %inputfolder%.7z? (T=Fast Compression) (Y/N):"
 goto packinput%errorlevel%
 :packinput1
 call :pack
@@ -54,7 +66,7 @@ goto done
 
 
 :sfxchoice
-choice /C yn /N /M "Create EXE file SeaMonkey.exe using SFX? (Y/N):"
+choice /C yn /N /M "Create %outputexe% using SFX? (Y/N):"
 goto sfxinput%errorlevel%
 :sfxinput1
 call :makesfx
@@ -64,7 +76,7 @@ exit
 
 
 :resourcechoice
-choice /C yn /N /M "Add Icon to SeaMonkey.exe and fix manifest? (Y/N):"
+choice /C yn /N /M "Add icon and update manifest? (Y/N):"
 goto resource%errorlevel%
 :resource1
 call :resourcehack
@@ -83,7 +95,7 @@ goto done
 
 :debloat
 echo.
-cd SeaMonkey
+cd %inputfolder% || exit /b
 rmdir /s /q defaults
 rmdir /s /q extensions
 rmdir /s /q fonts
@@ -108,7 +120,7 @@ del /q omni.ja.tmp* >nul
 del /q omni.ja.tmp* >nul
 cd ..
 echo.
-xcopy /y TempProfile\ SeaMonkey\TempProfile\
+xcopy /-y TempProfile\ %inputfolder%\TempProfile\
 echo.
 echo Debloat done and profile added, please check the output for errors before continuing.
 echo.  
@@ -117,8 +129,10 @@ exit /B 0
 
 :pack
 echo.
-del /q SeaMonkey.7z
-7za64.exe a -mx=9 SeaMonkey.7z SeaMonkey run.bat
+del /q %inputfolder%.7z
+echo %executablepath% > exe.txt
+7za64.exe a -mx=9 %inputfolder%.7z %inputfolder% run.bat exe.txt
+del /q exe.txt
 echo.
 echo Packing done, please check the output for errors before continuing.
 echo.  
@@ -127,8 +141,10 @@ exit /B 0
 
 :packfast
 echo.
-del /q SeaMonkey.7z
-7za64.exe a -mx=1 SeaMonkey.7z SeaMonkey run.bat
+del /q %inputfolder%.7z
+echo %executablepath% > exe.txt
+7za64.exe a -mx=1 %inputfolder%.7z %inputfolder% run.bat exe.txt
+del /q exe.txt
 echo.
 echo Packing done, please check the output for errors before continuing.
 echo.  
@@ -137,8 +153,8 @@ exit /B 0
 
 :makesfx
 echo. 
-del /q SeaMonkey-SFX.exe
-copy /Y /b 7zS264.sfx + SeaMonkey.7z SeaMonkey-SFX.exe
+del /q %outputexe%
+copy /Y /b 7zS264.sfx + %inputfolder%.7z %outputexe%
 echo.
 echo SFX step done, please check the output for errors before continuing.
 echo. 
@@ -153,8 +169,8 @@ set "RH3=%ProgramFiles%\Resource Hacker\ResourceHacker.exe"
 
 echo.
 echo Looking for Resource Hacker.exe in the following order...
-echo   %RH1%
 echo   %ResourceHackerPath%
+echo   %RH1%
 echo   %RH2%
 echo   %RH3%
 echo.
@@ -180,7 +196,9 @@ exit
 
 :runrh
 echo Found: %rhpath%
-"%rhpath%" -script ResourceHackerScript.txt
+REM "%rhpath%" -script ResourceHackerScript.txt
+"%rhpath%" -open "%outputexe%" -save "%outputexe%" -action addoverwrite -resource icon.ico -mask ICONGROUP,MAINICON,0 -log CONSOLE
+"%rhpath%" -open "%outputexe%" -save "%outputexe%" -action addoverwrite -resource Manifest.txt -mask Manifest,1, -log CONSOLE
 echo.
 echo Icon and manifest updated, please check the output for errors before continuing.
 echo. 

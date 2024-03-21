@@ -1,9 +1,11 @@
 @echo off
-echo Starting SeaMonkey...
-echo Leave this window open, closing it could cause issues with SeaMonkey and will prevent cleaning of temporary files.
-SeaMonkey\SeaMonkey.exe -profile SeaMonkey\TempProfile
+set /p executablepath=<exe.txt
+echo Starting %executablepath% ...
 echo.
-echo SeaMonkey closed.
+echo Leave this window open, closing it could cause issues with the program and will prevent cleaning of temporary files.
+"%executablepath%"
+echo.
+echo Program closed.
 echo.
 echo If this window doesn't close automaticly in about 5 seconds something has gone wrong and you may need
 echo   to force close it, the themporary files are located here: (%~dp0)

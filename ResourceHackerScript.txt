@@ -1,6 +1,6 @@
 [FILENAMES]
-Open=SeaMonkey-SFX.exe
-Save=SeaMonkey-SFX.exe
+Open=SeaMonkey-SFX64.exe
+Save=SeaMonkey-SFX64.exe
 Log=ResourceHacker.log
 [COMMANDS]
 -addoverwrite icon.ico, ICONGROUP,MAINICON,0
