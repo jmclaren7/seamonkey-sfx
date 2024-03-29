@@ -3,6 +3,7 @@
 :: Required paths for this project
 set "inputfolder=SeaMonkey"
 set "executablepath=%inputfolder%\SeaMonkey.exe"
+set "executableparameters=-profile SeaMonkey\TempProfile"
 SET "outputexe=%inputfolder%-SFX64.exe"
 
 :: Optional path to ResourceHacker.exe, this path will be checked first but standard paths will be checked if not found
@@ -131,7 +132,8 @@ exit /B 0
 echo.
 del /q %inputfolder%.7z
 echo %executablepath% > exe.txt
-7za64.exe a -mx=9 %inputfolder%.7z %inputfolder% run.bat exe.txt
+echo %executableparameters% > exeparameters.txt
+7za64.exe a -mx=9 %inputfolder%.7z %inputfolder% run.bat exe.txt exeparameters.txt
 del /q exe.txt
 echo.
 echo Packing done, please check the output for errors before continuing.

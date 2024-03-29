@@ -8,10 +8,11 @@
  * To make a manual change to preferences, you can visit the URL about:config
  */
 
-user_pref("app.update.lastUpdateTime.addon-background-update-timer", 1685557771);
-user_pref("app.update.lastUpdateTime.background-update-timer", 1699212575);
-user_pref("app.update.lastUpdateTime.blocklist-background-update-timer", 1699211510);
-user_pref("app.update.lastUpdateTime.search-engine-update-timer", 1685557651);
+user_pref("app.update.enabled", false);
+user_pref("app.update.lastUpdateTime.addon-background-update-timer", 1711728487);
+user_pref("app.update.lastUpdateTime.background-update-timer", 1711728727);
+user_pref("app.update.lastUpdateTime.blocklist-background-update-timer", 1711728607);
+user_pref("app.update.lastUpdateTime.search-engine-update-timer", 1711728367);
 user_pref("app.update.lastUpdateTime.xpi-signature-verification", 0);
 user_pref("browser.bookmarks.restore_default_bookmarks", false);
 user_pref("browser.cache.disk.capacity", 358400);
@@ -36,14 +37,14 @@ user_pref("extensions.e10sBlockedByAddons", true);
 user_pref("extensions.e10sMultiBlockedByAddons", true);
 user_pref("extensions.getAddons.databaseSchema", 5);
 user_pref("extensions.lastAppBuildId", "20230917130859");
-user_pref("extensions.lastAppVersion", "2.53.17.1");
-user_pref("extensions.lastPlatformVersion", "60.17.1");
+user_pref("extensions.lastAppVersion", "2.53.18.1");
+user_pref("extensions.lastPlatformVersion", "60.18.1");
 user_pref("extensions.pendingOperations", false);
 user_pref("extensions.systemAddonSet", "{\"schema\":1,\"addons\":{}}");
 user_pref("gecko.handlerService.migrated", true);
-user_pref("gfx.crash-guard.d3d11layers.appVersion", "2.53.17.1");
+user_pref("gfx.crash-guard.d3d11layers.appVersion", "2.53.18.1");
 user_pref("gfx.crash-guard.d3d11layers.deviceID", "0x2486");
-user_pref("gfx.crash-guard.d3d11layers.driverVersion", "31.0.15.3758");
+user_pref("gfx.crash-guard.d3d11layers.driverVersion", "31.0.15.5123");
 user_pref("gfx.crash-guard.d3d11layers.feature-d2d", true);
 user_pref("gfx.crash-guard.d3d11layers.feature-d3d11", true);
 user_pref("gfx.crash-guard.status.d3d11layers", 2);
