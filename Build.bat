@@ -8,6 +8,7 @@ set "outputexe=%inputfolder%-SFX64.exe"
 set "ResourceHackerPath=D:\example\Resource Hacker\ResourceHacker.exe"
 
 :main
+cd /d "%~dp0"
 echo.
 echo.
 echo Steps:
@@ -73,28 +74,16 @@ del /q omni.ja.tmp* >nul
 del /q omni.ja.tmp* >nul
 cd ..
 echo.
-xcopy /-y TempProfile\ %inputfolder%\TempProfile\
-echo.
-echo Debloat done and profile added, please check the output for errors before continuing.
+echo Debloat done, please check the output for errors before continuing.
 echo.  
 exit /B 0
 
 
 :pack
 echo.
+cd /d "%~dp0"
 del /q %inputfolder%.7z
-7za64.exe a -mx=9 %inputfolder%.7z %inputfolder% run.bat
-del /q exe.txt
-echo.
-echo Packing done, please check the output for errors before continuing.
-echo.  
-exit /B 0
-
-
-:packfast
-echo.
-del /q %inputfolder%.7z
-7za64.exe a -mx=1 %inputfolder%.7z %inputfolder% run.bat
+7za64.exe a -mx=6 %inputfolder%.7z %inputfolder% run.bat
 del /q exe.txt
 echo.
 echo Packing done, please check the output for errors before continuing.
