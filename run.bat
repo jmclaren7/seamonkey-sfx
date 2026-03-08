@@ -3,8 +3,8 @@ cd
 echo.
 echo Starting... Leave this window open, closing it could prevent cleaning temporary files.
 
-cd SeaMonkey
-SeaMonkey.exe -profile TempProfile 
+cd Palemoon
+palemoon.exe -profile ..\TempProfile-PM
 
 echo.
 echo Program closed.
