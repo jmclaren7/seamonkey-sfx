@@ -52,6 +52,7 @@ goto done
 echo.
 cd %inputfolder% || exit /b
 rmdir /s /q TempProfile
+rmdir /s /q %profilefolder%
 rmdir /s /q defaults
 rmdir /s /q extensions
 rmdir /s /q fonts
