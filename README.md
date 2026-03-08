@@ -1,10 +1,10 @@
-# SeaMonkey Browser Portable
-This build script and supplementary files will debloat, compress and turn the SeaMonkey Browser into a portable app. This is done using 7-zip SFX which is included along with an already debloated copy of the programs. The size of the portable file is around 33MB.
+# Portable Browser (Palemoon)
+This build script and supplementary files will debloat, compress and turn the Palemoon browser into a portable app. This is done using 7-zip SFX which is included along with an already debloated copy of the programs. The size of the portable file is around 33MB.
 
-My purpose for this is to have a single file portable program that can also run in a 64bit only environment. This serves as a universal solution to run it on WinPE and Windows Server Core (without wow64) but also as a way to run it easily from a remote access tool like ScreenSconnect with it's unique "back stage" feature.
+My purpose for this is to have a single file portable program that can also run in a 64bit only environment. This serves as a universal solution to run it on WinPE and Windows Server Core (without wow64) but also as a way to run it easily from a remote access tool like ScreenSconnect with it's unique "backstage" feature.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jmclaren7/seamonkey-sfx/master/Extra/Screenshot1.png?raw=true">
+  <img src="https://raw.githubusercontent.com/jmclaren7/portable-browser/master/Extra/Screenshot1.png?raw=true">
 </p>
 
 ## Resource Hacker
