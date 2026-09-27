@@ -4,7 +4,7 @@ echo.
 echo Starting... Leave this window open, closing it could prevent cleaning temporary files.
 
 cd Palemoon
-palemoon.exe -profile ..\TempProfile-PM
+Palemoon-Portable.exe -profile ..\TempProfile-PM
 
 echo.
 echo Program closed.
